@@ -1,22 +1,16 @@
 #!/usr/bin/env python3
 import sys
 
+def encode_port(port):
+    enc_port = hex(int(port))[2:].zfill(4)
+    return enc_port[2:] + enc_port[:2]
+
+def encode_ip(ip):
+    return str(int(''.join(format(int(part), '02x') for part in ip.split('.')[::-1]), 16))
+
 ip, port = sys.argv[1], sys.argv[2]
 
-ip = ip.split('.')
-ip.reverse()
-
-enc_ip = []
-
-for i in ip:
-    enc_ip.append(hex(int(i))[2:].zfill(2))
-
-enc_ip = ''.join(enc_ip)
-port = hex(int(port))[2:].zfill(4)
-
-enc_port = ''.join([port[i:i+2] for i in range(0, len(port), 2)])
-
-encoded_ip = int(enc_ip, 16)
-encoded_port = int(enc_port, 16)
+encoded_ip = encode_ip(ip)
+encoded_port = int(encode_port(port), 16)
 
 print("Encoded BigIP Cookie: %s.%s.0000" % (encoded_ip, encoded_port))
