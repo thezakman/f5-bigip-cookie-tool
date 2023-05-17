@@ -18,8 +18,8 @@ Decoded cookie (IP address:Port): 172.29.1.160:1480
 bigip-encode.py 127.0.0.1 80
 
 ```
-❯ python3 bigip-encode.py 127.0.0.1 80
-Encoded BigIP Cookie: 16777343.80.0000
+❯ python3 bigip-encode.py 172.29.1.160 1480
+Encoded BigIP Cookie: 2684427692.51205.0000
 ```
 
 
